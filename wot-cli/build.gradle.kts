@@ -26,5 +26,5 @@ tasks.test {
 
 
 application {
-    mainClass.set("main.MainKt")
+    mainClass.set("wot.CliKt")
 }
