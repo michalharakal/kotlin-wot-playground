@@ -6,6 +6,7 @@ import org.jetbrains.kotlin.gradle.plugin.PLUGIN_CLASSPATH_CONFIGURATION_NAME
 
 plugins {
     kotlin("multiplatform")
+    kotlin("plugin.serialization") version "2.1.0"
     id("org.jetbrains.dokka")
     id("com.vanniktech.maven.publish.base")
     id("binary-compatibility-validator")
@@ -54,7 +55,13 @@ kotlin {
     applyDefaultHierarchyTemplate()
 
     sourceSets {
+        commonMain {
+            dependencies {
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3") // Use the latest version
+            }
+        }
         val commonTest by getting {
+
             dependencies {
                 implementation(libs.assertk)
                 implementation(kotlin("test"))

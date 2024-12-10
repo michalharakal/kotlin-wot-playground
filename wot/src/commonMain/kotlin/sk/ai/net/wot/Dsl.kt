@@ -1,11 +1,30 @@
 package sk.ai.net.wot
 
+import kotlinx.serialization.Serializable
+
+
+@Serializable
+data class MyNumber(val number:Double)
+
+
+@Serializable
 sealed class DataSchemaValue {
+    @Serializable
     object NullValue : DataSchemaValue()
+
+    @Serializable
     data class BooleanValue(val value: Boolean) : DataSchemaValue()
-    data class NumberValue(val value: Number) : DataSchemaValue()
+
+    @Serializable
+    data class NumberValue(val value: MyNumber) : DataSchemaValue()
+
+    @Serializable
     data class StringValue(val value: String) : DataSchemaValue()
+
+    @Serializable
     data class ObjectValue(val value: Map<String, DataSchemaValue>) : DataSchemaValue()
+
+    @Serializable
     data class ArrayValue(val value: List<DataSchemaValue>) : DataSchemaValue()
 }
 
@@ -17,7 +36,7 @@ class DataSchemaBuilder {
         currentValue = DataSchemaValue.BooleanValue(value)
     }
 
-    fun number(value: Number) = apply {
+    fun number(value: MyNumber) = apply {
         currentValue = DataSchemaValue.NumberValue(value)
     }
 

@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.plugin.PLUGIN_CLASSPATH_CONFIGURATION_NAME
 
 plugins {
     kotlin("jvm")
+    kotlin("plugin.serialization") version "2.1.0"
     application
 }
 
@@ -17,6 +18,10 @@ dependencies {
 
 dependencies {
     implementation(project(":wot"))
+
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3") // Use the latest version
+
+
     testImplementation(kotlin("test"))
 }
 

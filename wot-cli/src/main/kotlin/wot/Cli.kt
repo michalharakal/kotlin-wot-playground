@@ -1,11 +1,14 @@
 package wot
 
 import sk.ai.net.wot.*
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
+
 
 fun main() {
     val schema = DataSchemaBuilder().obj {
         field("name") { string("John") }
-        field("age") { number(30) }
+        field("age") { number(MyNumber(30.0)) }
         field("isStudent") { boolean(false) }
         field("contact") {
             obj {
@@ -22,4 +25,7 @@ fun main() {
     }.build()
 
     println(schema)
+
+    val json = Json.encodeToString(schema)
+    println(json)
 }
